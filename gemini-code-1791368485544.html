@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life & Business Planner 2026-2027</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4a3b32;
+            --primary-light: #8c7a6b;
+            --accent: #c5a059;
+            --bg-main: #fdfbf7;
+            --card-bg: #ffffff;
+            --text-dark: #2c2523;
+            --text-muted: #7a7067;
+            --border: #e6dfd5;
+            --border-light: #f0eae1;
+            --highlight: #f7f3ed;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f4ede4;
+            color: var(--text-dark);
+            line-height: 1.5;
+            font-size: 13px;
+        }
+
+        .app-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--primary);
+            color: #fff;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .app-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        label {
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        select, input {
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            font-family: inherit;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+        }
+
+        .btn:hover {
+            background-color: #b08d48;
+            transform: translateY(-1px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.15);
+        }
+
+        .btn-sm {
+            padding: 2px 6px;
+            font-size: 7.5pt;
+            border-radius: 3px;
+        }
+
+        .planner-container {
+            max-width: 210mm;
+            margin: 20px auto;
+            background: transparent;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 15mm 15mm 12mm 15mm;
+            margin: 0 auto 30px auto;
+            background: var(--card-bg);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.06);
+            border-radius: 2px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        [contenteditable="true"] {
+            outline: none;
+            transition: background 0.2s;
+            border-radius: 3px;
+            padding: 1px 3px;
+        }
+
+        [contenteditable="true"]:hover {
+            background-color: rgba(197, 160, 89, 0.1);
+        }
+
+        [contenteditable="true"]:focus {
+            background-color: rgba(197, 160, 89, 0.18);
+            box-shadow: 0 0 0 1px var(--accent);
+        }
+
+        .header-section {
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 12px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .header-title-area h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22pt;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            line-height: 1.1;
+        }
+
+        .header-title-area p {
+            font-size: 8.5pt;
+            color: var(--primary-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 3px;
+            font-weight: 600;
+        }
+
+        .date-badge {
+            text-align: right;
+        }
+
+        .date-badge .day-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 16pt;
+            font-weight: 700;
+            color: var(--accent);
+            text-transform: capitalize;
+        }
+
+        .date-badge .full-date {
+            font-size: 10pt;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .focus-box {
+            background-color: var(--highlight);
+            border-left: 4px solid var(--accent);
+            padding: 10px 14px;
+            margin-bottom: 15px;
+            border-radius: 0 6px 6px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .focus-label {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 8pt;
+            letter-spacing: 1px;
+            color: var(--primary);
+            white-space: nowrap;
+        }
+
+        .focus-content {
+            font-size: 10pt;
+            color: var(--text-dark);
+            flex-grow: 1;
+            font-weight: 500;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .section-block {
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            padding: 12px;
+            background: #fff;
+        }
+
+        .section-header {
+            font-family: 'Playfair Display', serif;
+            font-size: 11pt;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-light);
+            padding-bottom: 6px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .task-list {
+            list-style: none;
+        }
+
+        .task-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+            font-size: 9.5pt;
+        }
+
+        .task-checkbox {
+            width: 16px;
+            height: 16px;
+            border: 1.5px solid var(--primary-light);
+            border-radius: 3px;
+            margin-top: 1px;
+            flex-shrink: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .task-checkbox:hover {
+            border-color: var(--accent);
+            background-color: var(--highlight);
+        }
+
+        .task-checkbox.completed {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            color: white;
+        }
+
+        .task-checkbox.completed::after {
+            content: '✓';
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .task-item.done .task-text {
+            text-decoration: line-through;
+            color: var(--text-muted);
+        }
+
+        .task-text {
+            flex-grow: 1;
+            min-height: 18px;
+            color: var(--text-dark);
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .schedule-table tr {
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .schedule-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .schedule-time {
+            width: 105px;
+            padding: 6px 4px;
+            font-size: 8pt;
+            font-weight: 600;
+            color: var(--primary-light);
+            vertical-align: top;
+        }
+
+        .schedule-desc {
+            padding: 6px 4px;
+            font-size: 9pt;
+            color: var(--text-dark);
+        }
+
+        .expense-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+        }
+
+        .expense-table th {
+            text-align: left;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            padding: 4px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .expense-table td {
+            padding: 4px;
+            font-size: 8.5pt;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .expense-table td.amount {
+            text-align: right;
+            font-weight: 600;
+            color: var(--primary);
+            width: 90px;
+        }
+
+        .num-input {
+            width: 80px;
+            text-align: right;
+            padding: 2px 4px;
+            font-size: 8.5pt;
+            font-weight: 600;
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            color: var(--primary);
+        }
+
+        .expense-table tfoot td {
+            font-weight: 700;
+            background-color: var(--highlight);
+            border-top: 2px solid var(--border);
+            border-bottom: none;
+            color: var(--primary);
+            padding: 6px 4px;
+        }
+
+        .category-select {
+            width: 100%;
+            padding: 2px 4px;
+            font-size: 8pt;
+            border: 1px solid var(--border);
+            border-radius: 3px;
+            background: #fff;
+            color: var(--text-dark);
+            outline: none;
+        }
+
+        .btn-delete-row {
+            background: none;
+            border: none;
+            color: #d9534f;
+            cursor: pointer;
+            font-size: 10pt;
+            padding: 0 4px;
+            line-height: 1;
+        }
+
+        .btn-delete-row:hover {
+            color: #c9302c;
+        }
+
+        .summary-box {
+            margin-top: 10px;
+            padding: 8px 10px;
+            background-color: var(--highlight);
+            border-radius: 4px;
+            font-size: 8pt;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 15px;
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+        }
+
+        .summary-box:empty {
+            display: none;
+        }
+
+        .summary-item {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+        }
+
+        .summary-val {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .habits-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 12px;
+            background: var(--highlight);
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            margin-top: auto;
+        }
+
+        .habit-card h4 {
+            font-size: 8pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--primary-light);
+            margin-bottom: 6px;
+        }
+
+        .water-tracker {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            margin-top: 4px;
+        }
+
+        .water-drop {
+            width: 14px;
+            height: 14px;
+            border: 1.5px solid #5a9bd4;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .water-drop.active {
+            background-color: #5a9bd4;
+        }
+
+        .meals-list {
+            font-size: 8.5pt;
+            line-height: 1.6;
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 7.5pt;
+            color: var(--text-muted);
+            margin-top: 10px;
+            border-top: 1px solid var(--border-light);
+            padding-top: 8px;
+        }
+
+        @media print {
+            body {
+                background: none;
+                color: #000;
+            }
+
+            .app-header, .no-print {
+                display: none !important;
+            }
+
+            .planner-container {
+                max-width: 100%;
+                margin: 0;
+            }
+
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                height: 100vh;
+                page-break-after: always;
+                page-break-inside: avoid;
+                padding: 10mm 10mm 8mm 10mm;
+            }
+
+            .num-input, .category-select {
+                border: none;
+                background: transparent;
+                padding: 0;
+            }
+
+            [contenteditable="true"]:hover, [contenteditable="true"]:focus {
+                background: transparent !important;
+                box-shadow: none !important;
+            }
+
+            @page {
+                size: A4;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-header">
+        <div class="app-title">
+            👑 <span>Life & Business Planner</span>
+        </div>
+        <div class="controls">
+            <div class="control-group">
+                <label for="datePicker">Select Date:</label>
+                <input type="date" id="datePicker" value="2026-01-01" min="2026-01-01" max="2027-12-31">
+            </div>
+            <button class="btn btn-outline" id="prevDayBtn">◄ Previous</button>
+            <button class="btn btn-outline" id="nextDayBtn">Next ►</button>
+            <button class="btn" onclick="window.print()">
+                🖨️ Print / Save as PDF
+            </button>
+        </div>
+    </div>
+
+    <div class="planner-container">
+        
+        <!-- PAGE 1: DAILY PLANNER -->
+        <div class="page" id="dailyPage">
+            <div class="header-section">
+                <div class="header-title-area">
+                    <h1 contenteditable="true" data-save="title">Daily Planner</h1>
+                    <p contenteditable="true" data-save="subtitle">Business & Family Harmony</p>
+                </div>
+                <div class="date-badge">
+                    <div class="day-name" id="displayDayName">Thursday</div>
+                    <div class="full-date" id="displayFullDate">January 1, 2026</div>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <div class="focus-label">🎯 Daily Priority:</div>
+                <div class="focus-content" contenteditable="true" data-save="priority">Finalize client offer & Organize kids' weekly schedule</div>
+            </div>
+
+            <div class="grid-2col">
+                <div class="section-block">
+                    <div class="section-header">
+                        💼 BUSINESS
+                        <button class="btn btn-sm no-print" id="addBizTaskBtn">+ Add Task</button>
+                    </div>
+                    <ul class="task-list" id="bizTaskList">
+                        <!-- Dynamically Generated -->
+                    </ul>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-header">
+                        🏠 HOME & FAMILY
+                        <button class="btn btn-sm no-print" id="addHomeTaskBtn">+ Add Task</button>
+                    </div>
+                    <ul class="task-list" id="homeTaskList">
+                        <!-- Dynamically Generated -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid-2col" style="margin-bottom: auto;">
+                <div class="section-block">
+                    <div class="section-header">
+                        🕒 DAILY SCHEDULE
+                        <button class="btn btn-sm no-print" id="addScheduleRowBtn">+ Add Schedule</button>
+                    </div>
+                    <table class="schedule-table" id="scheduleTable">
+                        <tbody>
+                            <!-- Dynamically Generated -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-header">
+                        💳 DAILY EXPENSES
+                        <div class="no-print" style="display: flex; gap: 4px;">
+                            <button class="btn btn-sm" id="addExpenseRowBtn">+ Add Row</button>
+                        </div>
+                    </div>
+                    <table class="expense-table" id="dailyExpenseTable">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th style="width: 110px;">Category</th>
+                                <th style="text-align: right;">Amount</th>
+                                <th class="no-print" style="width: 20px;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dynamically Generated -->
+                        </tbody>
+                    </table>
+
+                    <div class="summary-box" id="categorySummaryBox">
+                        <!-- Dynamically Generated -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="habits-grid">
+                <div class="habit-card">
+                    <h4>🥗 Meal Plan</h4>
+                    <div class="meals-list">
+                        <div><b>B:</b> <span contenteditable="true" data-save="meal-b">Oatmeal with fresh berries</span></div>
+                        <div><b>L:</b> <span contenteditable="true" data-save="meal-l">Salmon with roasted veggies</span></div>
+                        <div><b>D:</b> <span contenteditable="true" data-save="meal-d">Quinoa and avocado salad</span></div>
+                    </div>
+                </div>
+
+                <div class="habit-card">
+                    <h4>💧 Water Tracker (8x)</h4>
+                    <div class="water-tracker" id="waterTracker">
+                        <span class="water-drop active"></span>
+                        <span class="water-drop active"></span>
+                        <span class="water-drop active"></span>
+                        <span class="water-drop"></span>
+                        <span class="water-drop"></span>
+                        <span class="water-drop"></span>
+                        <span class="water-drop"></span>
+                        <span class="water-drop"></span>
+                    </div>
+                    <div style="margin-top: 8px; font-size: 8pt; color: var(--text-muted);">
+                        Workout: <span contenteditable="true" data-save="workout" style="font-weight: 600; color: var(--text-dark);">30 min yoga / walk</span>
+                    </div>
+                </div>
+
+                <div class="habit-card">
+                    <h4>🌸 Self-Care & Gratitude</h4>
+                    <div id="dailyQuote" contenteditable="true" data-save="quote" style="font-size: 8.5pt; font-style: italic; color: var(--text-dark);">
+                        "Every day is a fresh start — you decide what story to write today."
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-note">
+                Life & Business Planner 2026-2027 • Martyna Waleńska, Founder & CEO BEE-BEST, tel. +48 793 209 177, www.bee-best.com.pl
+            </div>
+        </div>
+
+        <!-- PAGE 2: MONTHLY BUDGET PLANNER -->
+        <div class="page">
+            <div class="header-section">
+                <div class="header-title-area">
+                    <h1 contenteditable="true" data-save="mbudget-title">Monthly Budget</h1>
+                    <p contenteditable="true" data-save="mbudget-subtitle">Monthly Financial Overview & Cash Flow</p>
+                </div>
+                <div class="date-badge">
+                    <div class="day-name" id="displayMonthName">January 2026</div>
+                    <div class="full-date">Financial Plan</div>
+                </div>
+            </div>
+
+            <div class="focus-box">
+                <div class="focus-label">💰 Monthly Financial Goal:</div>
+                <div class="focus-content" contenteditable="true" data-save="mbudget-goal">Reach $25,000 in revenue and set aside $5,000 for emergency savings</div>
+            </div>
+
+            <div class="section-block" style="margin-bottom: 15px;">
+                <div class="section-header">
+                    📊 BUDGET OVERVIEW
+                    <button class="btn btn-sm no-print" id="addCategoryBtn">+ Add Category</button>
+                </div>
+                <table class="expense-table" id="monthlyOverviewTable">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th style="text-align: right;">Planned ($)</th>
+                            <th style="text-align: right;">Actual Sum ($)</th>
+                            <th style="text-align: right;">Difference ($)</th>
+                            <th class="no-print" style="width: 20px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Dynamically generated -->
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>TOTAL</td>
+                            <td class="amount" id="totalPlanned">0.00</td>
+                            <td class="amount" id="totalActual">0.00</td>
+                            <td class="amount" id="totalDiff">0.00</td>
+                            <td class="no-print"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="grid-2col" style="margin-bottom: auto;">
+                <div class="section-block">
+                    <div class="section-header">
+                        💵 INCOMES
+                        <span class="tag">Revenue</span>
+                    </div>
+                    <table class="expense-table">
+                        <thead>
+                            <tr>
+                                <th>Income Source</th>
+                                <th style="text-align: right;">Amount ($)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td contenteditable="true" data-save="inc-s1">Business Sales & Services</td>
+                                <td class="amount"><input type="number" class="num-input" data-input-save="inc-a1" value="20000.00" step="0.01"></td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true" data-save="inc-s2">Side Projects / Consulting</td>
+                                <td class="amount"><input type="number" class="num-input" data-input-save="inc-a2" value="3500.00" step="0.01"></td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true" data-save="inc-s3">Other Revenue Sources</td>
+                                <td class="amount"><input type="number" class="num-input" data-input-save="inc-a3" value="1000.00" step="0.01"></td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true" data-save="inc-s4"></td>
+                                <td class="amount"><input type="number" class="num-input" data-input-save="inc-a4" step="0.01"></td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true" data-save="inc-s5"></td>
+                                <td class="amount"><input type="number" class="num-input" data-input-save="inc-a5" step="0.01"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="section-block">
+                    <div class="section-header">
+                        📌 FIXED OBLIGATIONS
+                        <span class="tag">Bills</span>
+                    </div>
+                    <table class="expense-table">
+                        <thead>
+                            <tr>
+                                <th>Bill Name</th>
+                                <th style="text-align: right;">Due Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td contenteditable="true" data-save="fix-n1">Mortgage / Rent</td>
+                                <td class="amount" contenteditable="true" data-save="fix-d1">10th</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true" data-save="fix-n2">Business Taxes & Insurance</td>
+                                <td class="amount" contenteditable="true" data-save="fix-d2">20th</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true" data-save="fix-n3">School / Kids Activities</td>
+                                <td class="amount" contenteditable="true" data-save="fix-d3">15th</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true" data-save="fix-n4">Electricity, Gas, Internet, Phone</td>
+                                <td class="amount" contenteditable="true" data-save="fix-d4">25th</td>
+                            </tr>
+                            <tr>
+                                <td contenteditable="true" data-save="fix-n5"></td>
+                                <td class="amount" contenteditable="true" data-save="fix-d5"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="section-block" style="margin-top: 15px;">
+                <div class="section-header">
+                    📝 MONTHLY NOTES & REVIEW
+                </div>
+                <div contenteditable="true" data-save="m-review" style="min-height: 80px; font-size: 9pt; color: var(--text-dark); line-height: 1.6;">
+                    Maintained financial discipline across household budgets this month. Consider increasing marketing efforts next month to sustain lead flow.
+                </div>
+            </div>
+
+            <div class="footer-note">
+                Life & Business Planner 2026-2027 • Martyna Waleńska, Founder & CEO BEE-BEST, tel. +48 793 209 177, www.bee-best.com.pl
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const datePicker = document.getElementById('datePicker');
+        const displayDayName = document.getElementById('displayDayName');
+        const displayFullDate = document.getElementById('displayFullDate');
+        const displayMonthName = document.getElementById('displayMonthName');
+        const prevBtn = document.getElementById('prevDayBtn');
+        const nextBtn = document.getElementById('nextDayBtn');
+        const summaryBox = document.getElementById('categorySummaryBox');
+
+        const monthsEN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const daysEN = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+        const defaultCategories = ["💼 Business", "🏠 Home & Utilities", "🛒 Daily Life", "🧸 Kids", "📈 Savings & Investments", "🌸 Self-Care & Entertainment"];
+        let categories = [...defaultCategories];
+
+        function loadCategories() {
+            const savedCats = localStorage.getItem('planner_global_categories');
+            if (savedCats) categories = JSON.parse(savedCats);
+        }
+
+        function saveCategories() {
+            localStorage.setItem('planner_global_categories', JSON.stringify(categories));
+        }
+
+        /* --- DYNAMIC TASK & SCHEDULE HANDLERS --- */
+        function createTaskRowHTML(listId, index, defaultText = "") {
+            const li = document.createElement('li');
+            li.className = 'task-item';
+            li.innerHTML = `
+                <div class="task-checkbox"></div>
+                <div class="task-text" contenteditable="true" data-save="${listId}-${index}">${defaultText}</div>
+                <button class="btn-delete-row no-print" onclick="deleteTaskRow(this)">✕</button>
+            `;
+            li.querySelector('.task-checkbox').addEventListener('click', function() {
+                this.classList.toggle('completed');
+                li.classList.toggle('done');
+                saveData();
+            });
+            return li;
+        }
+
+        function addBizTask(defaultText = "") {
+            const ul = document.getElementById('bizTaskList');
+            const idx = ul.children.length;
+            ul.appendChild(createTaskRowHTML('biz', idx, defaultText));
+        }
+
+        function addHomeTask(defaultText = "") {
+            const ul = document.getElementById('homeTaskList');
+            const idx = ul.children.length;
+            ul.appendChild(createTaskRowHTML('home', idx, defaultText));
+        }
+
+        window.deleteTaskRow = function(btn) {
+            btn.closest('li').remove();
+            saveData();
+        };
+
+        document.getElementById('addBizTaskBtn').addEventListener('click', () => { addBizTask(); saveData(); });
+        document.getElementById('addHomeTaskBtn').addEventListener('click', () => { addHomeTask(); saveData(); });
+
+        /* SCHEDULE HANDLERS WITH SUGGESTED HOURS & FULL EDITABILITY */
+        const defaultSchedule = [
+            { time: "06:00 - 08:00 AM", desc: "Morning routine, breakfast, kids to school" },
+            { time: "08:00 - 12:00 PM", desc: "Deep Work (Focus Time)" },
+            { time: "12:00 - 01:00 PM", desc: "Lunch break & Walk / Mindful reset" },
+            { time: "01:00 - 03:00 PM", desc: "Meetings, emails & admin tasks" },
+            { time: "03:00 - 06:00 PM", desc: "Pick up kids, activities & family time" },
+            { time: "06:00 - 08:00 PM", desc: "Dinner, home tidy-up & relaxation" },
+            { time: "08:00 - 10:00 PM", desc: "Me-time / Reading / Couple time" }
+        ];
+
+        function addScheduleRow(time = "", desc = "") {
+            const tbody = document.querySelector('#scheduleTable tbody');
+            const idx = tbody.children.length;
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td class="schedule-time" contenteditable="true" data-save="sch-t-${idx}">${time}</td>
+                <td class="schedule-desc" contenteditable="true" data-save="sch-d-${idx}">${desc}</td>
+                <td class="no-print" style="width:20px;"><button class="btn-delete-row" onclick="deleteScheduleRow(this)">✕</button></td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        window.deleteScheduleRow = function(btn) {
+            btn.closest('tr').remove();
+            saveData();
+        };
+
+        document.getElementById('addScheduleRowBtn').addEventListener('click', () => { addScheduleRow(); saveData(); });
+
+        /* EXPENSES & MONTHLY OVERVIEW HANDLERS */
+        function getCategoryOptionsHTML(selectedCategory = "") {
+            return categories.map(cat => `<option value="${cat}" ${cat === selectedCategory ? 'selected' : ''}>${cat}</option>`).join('');
+        }
+
+        function addExpenseRowHTML(index) {
+            const tbody = document.querySelector('#dailyExpenseTable tbody');
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td contenteditable="true" data-save="exp-d-${index}"></td>
+                <td>
+                    <select class="category-select" data-select-save="exp-cat-${index}">
+                        ${getCategoryOptionsHTML()}
+                    </select>
+                </td>
+                <td class="amount"><input type="number" class="num-input daily-exp-input" data-input-save="exp-a-${index}" step="0.01"></td>
+                <td class="no-print"><button class="btn-delete-row" title="Delete row" onclick="deleteExpenseRow(this)">✕</button></td>
+            `;
+            tbody.appendChild(tr);
+        }
+
+        document.getElementById('addExpenseRowBtn').addEventListener('click', () => {
+            const newIndex = document.querySelectorAll('#dailyExpenseTable tbody tr').length;
+            addExpenseRowHTML(newIndex);
+            saveData();
+        });
+
+        window.deleteExpenseRow = function(btn) {
+            btn.closest('tr').remove();
+            calculateCategoryTotals();
+            saveData();
+            renderMonthlyOverviewTable();
+        };
+
+        function calculateCategoryTotals() {
+            const totals = {};
+            document.querySelectorAll('#dailyExpenseTable tbody tr').forEach(row => {
+                const selectEl = row.querySelector('select');
+                const inputEl = row.querySelector('.daily-exp-input');
+                if (selectEl && inputEl) {
+                    const cat = selectEl.value;
+                    const amt = parseFloat(inputEl.value) || 0;
+                    if (amt > 0) totals[cat] = (totals[cat] || 0) + amt;
+                }
+            });
+            summaryBox.innerHTML = '';
+            Object.keys(totals).forEach(cat => {
+                const item = document.createElement('div');
+                item.className = 'summary-item';
+                item.innerHTML = `${cat}: <span class="summary-val">$${totals[cat].toFixed(2)}</span>`;
+                summaryBox.appendChild(item);
+            });
+        }
+
+        function getMonthlyActualsFromDays(yearMonthPrefix) {
+            const totals = {};
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                if (key.startsWith(`planner_data_${yearMonthPrefix}`)) {
+                    try {
+                        const dayData = JSON.parse(localStorage.getItem(key));
+                        if (dayData && dayData.inputFields && dayData.selectFields) {
+                            const rowCount = dayData.expenseRowsCount || 6;
+                            for (let r = 0; r < rowCount; r++) {
+                                const cat = dayData.selectFields[`exp-cat-${r}`];
+                                const amt = parseFloat(dayData.inputFields[`exp-a-${r}`]) || 0;
+                                if (cat && amt > 0) totals[cat] = (totals[cat] || 0) + amt;
+                            }
+                        }
+                    } catch(e) {}
+                }
+            }
+            return totals;
+        }
+
+        function renderMonthlyOverviewTable() {
+            const tbody = document.querySelector('#monthlyOverviewTable tbody');
+            tbody.innerHTML = '';
+            const currentMonthPrefix = datePicker.value.substring(0, 7);
+            const monthlyActuals = getMonthlyActualsFromDays(currentMonthPrefix);
+
+            categories.forEach((cat, index) => {
+                const tr = document.createElement('tr');
+                const actualVal = monthlyActuals[cat] || 0;
+                tr.innerHTML = `
+                    <td contenteditable="true" data-save="ov-cat-${index}">${cat}</td>
+                    <td class="amount"><input type="number" class="num-input planned-input" data-input-save="ov-p-${index}" value="0.00" step="0.01"></td>
+                    <td class="amount actual-val">${actualVal.toFixed(2)}</td>
+                    <td class="amount diff-val">0.00</td>
+                    <td class="no-print"><button class="btn-delete-row" title="Delete category" onclick="removeCategory(${index})">✕</button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+            calculateMonthlyTotals();
+        }
+
+        function calculateMonthlyTotals() {
+            let totalPlanned = 0, totalActual = 0, totalDiff = 0;
+            document.querySelectorAll('#monthlyOverviewTable tbody tr').forEach(row => {
+                const plannedInput = row.querySelector('.planned-input');
+                const actualCell = row.querySelector('.actual-val');
+                const diffCell = row.querySelector('.diff-val');
+                if (plannedInput && actualCell && diffCell) {
+                    const planned = parseFloat(plannedInput.value) || 0;
+                    const actual = parseFloat(actualCell.textContent) || 0;
+                    const diff = planned - actual;
+                    diffCell.textContent = diff.toFixed(2);
+                    totalPlanned += planned;
+                    totalActual += actual;
+                    totalDiff += diff;
+                }
+            });
+            document.getElementById('totalPlanned').textContent = totalPlanned.toFixed(2);
+            document.getElementById('totalActual').textContent = totalActual.toFixed(2);
+            document.getElementById('totalDiff').textContent = totalDiff.toFixed(2);
+        }
+
+        window.removeCategory = function(index) {
+            if (categories.length <= 1) return alert("You must keep at least one category.");
+            categories.splice(index, 1);
+            saveCategories();
+            renderMonthlyOverviewTable();
+            loadData(datePicker.value);
+        };
+
+        document.getElementById('addCategoryBtn').addEventListener('click', () => {
+            const newCat = prompt("Enter new category name:");
+            if (newCat && newCat.trim()) {
+                categories.push(newCat.trim());
+                saveCategories();
+                renderMonthlyOverviewTable();
+                loadData(datePicker.value);
+            }
+        });
+
+        /* STORAGE SAVE / LOAD LOGIC */
+        function getStorageKey(dateStr) { return `planner_data_${dateStr}`; }
+
+        function saveData() {
+            const dateStr = datePicker.value;
+            const pageData = {
+                textFields: {}, inputFields: {}, selectFields: {}, checkboxes: {}, water: [],
+                bizTasksCount: document.querySelectorAll('#bizTaskList li').length,
+                homeTasksCount: document.querySelectorAll('#homeTaskList li').length,
+                scheduleRowsCount: document.querySelectorAll('#scheduleTable tbody tr').length,
+                expenseRowsCount: document.querySelectorAll('#dailyExpenseTable tbody tr').length
+            };
+
+            document.querySelectorAll('[data-save]').forEach(el => {
+                pageData.textFields[el.getAttribute('data-save')] = el.innerHTML;
+            });
+            document.querySelectorAll('[data-input-save]').forEach(el => {
+                pageData.inputFields[el.getAttribute('data-input-save')] = el.value;
+            });
+            document.querySelectorAll('[data-select-save]').forEach(el => {
+                pageData.selectFields[el.getAttribute('data-select-save')] = el.value;
+            });
+            document.querySelectorAll('.task-checkbox').forEach(cb => {
+                const parentText = cb.nextElementSibling;
+                if (parentText && parentText.hasAttribute('data-save')) {
+                    pageData.checkboxes[parentText.getAttribute('data-save')] = cb.classList.contains('completed');
+                }
+            });
+            document.querySelectorAll('.water-drop').forEach((drop, index) => {
+                pageData.water[index] = drop.classList.contains('active');
+            });
+
+            localStorage.setItem(getStorageKey(dateStr), JSON.stringify(pageData));
+            renderMonthlyOverviewTable();
+        }
+
+        function loadData(dateStr) {
+            const savedRaw = localStorage.getItem(getStorageKey(dateStr));
+            
+            document.getElementById('bizTaskList').innerHTML = '';
+            document.getElementById('homeTaskList').innerHTML = '';
+            document.querySelector('#scheduleTable tbody').innerHTML = '';
+            document.querySelector('#dailyExpenseTable tbody').innerHTML = '';
+
+            if (!savedRaw) {
+                ["Send proposals and estimates", "Inbox review and email replies", "Prepare Social Media posts", "Team call / Client consultation", "Issue monthly invoices"].forEach(t => addBizTask(t));
+                ["Sign up kids for extra activities", "Plan dinner and buy groceries", "Pick up dry cleaning / Errands", "Family story time / Quality time", "Pay household utility bills"].forEach(t => addHomeTask(t));
+                
+                defaultSchedule.forEach(item => addScheduleRow(item.time, item.desc));
+
+                for (let i = 0; i < 6; i++) addExpenseRowHTML(i);
+
+                document.querySelectorAll('.water-drop').forEach((drop, i) => drop.classList.toggle('active', i < 3));
+                calculateCategoryTotals();
+                renderMonthlyOverviewTable();
+                return;
+            }
+
+            const pageData = JSON.parse(savedRaw);
+
+            for (let i = 0; i < (pageData.bizTasksCount || 5); i++) addBizTask();
+            for (let i = 0; i < (pageData.homeTasksCount || 5); i++) addHomeTask();
+            for (let i = 0; i < (pageData.scheduleRowsCount || 7); i++) addScheduleRow();
+            for (let i = 0; i < (pageData.expenseRowsCount || 6); i++) addExpenseRowHTML(i);
+
+            if (pageData.textFields) {
+                Object.keys(pageData.textFields).forEach(key => {
+                    const el = document.querySelector(`[data-save="${key}"]`);
+                    if (el) el.innerHTML = pageData.textFields[key];
+                });
+            }
+            if (pageData.inputFields) {
+                Object.keys(pageData.inputFields).forEach(key => {
+                    const el = document.querySelector(`[data-input-save="${key}"]`);
+                    if (el) el.value = pageData.inputFields[key];
+                });
+            }
+            if (pageData.selectFields) {
+                Object.keys(pageData.selectFields).forEach(key => {
+                    const el = document.querySelector(`[data-select-save="${key}"]`);
+                    if (el) el.value = pageData.selectFields[key];
+                });
+            }
+            if (pageData.checkboxes) {
+                Object.keys(pageData.checkboxes).forEach(key => {
+                    const taskTextEl = document.querySelector(`[data-save="${key}"]`);
+                    if (taskTextEl) {
+                        const isChecked = pageData.checkboxes[key];
+                        const cb = taskTextEl.previousElementSibling;
+                        const parent = taskTextEl.parentElement;
+                        if (cb && cb.classList.contains('task-checkbox')) {
+                            cb.classList.toggle('completed', isChecked);
+                            if (parent) parent.classList.toggle('done', isChecked);
+                        }
+                    }
+                });
+            }
+            if (pageData.water) {
+                document.querySelectorAll('.water-drop').forEach((drop, index) => {
+                    drop.classList.toggle('active', !!pageData.water[index]);
+                });
+            }
+
+            calculateCategoryTotals();
+            renderMonthlyOverviewTable();
+        }
+
+        function updateDateDisplay(dateStr) {
+            const date = new Date(dateStr);
+            if (isNaN(date.getTime())) return;
+            displayDayName.textContent = daysEN[date.getDay()];
+            displayFullDate.textContent = `${monthsEN[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+            displayMonthName.textContent = `${monthsEN[date.getMonth()]} ${date.getFullYear()}`;
+            loadData(dateStr);
+        }
+
+        document.addEventListener('input', (e) => {
+            if (e.target.hasAttribute('data-save') || e.target.hasAttribute('data-input-save')) {
+                calculateCategoryTotals();
+                saveData();
+            }
+        });
+
+        document.addEventListener('change', (e) => {
+            if (e.target.hasAttribute('data-select-save')) {
+                calculateCategoryTotals();
+                saveData();
+            }
+        });
+
+        datePicker.addEventListener('change', (e) => updateDateDisplay(e.target.value));
+
+        prevBtn.addEventListener('click', () => {
+            const currentDate = new Date(datePicker.value);
+            currentDate.setDate(currentDate.getDate() - 1);
+            const isoStr = currentDate.toISOString().split('T')[0];
+            datePicker.value = isoStr;
+            updateDateDisplay(isoStr);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const currentDate = new Date(datePicker.value);
+            currentDate.setDate(currentDate.getDate() + 1);
+            const isoStr = currentDate.toISOString().split('T')[0];
+            datePicker.value = isoStr;
+            updateDateDisplay(isoStr);
+        });
+
+        document.querySelectorAll('.water-drop').forEach(drop => {
+            drop.addEventListener('click', () => {
+                drop.classList.toggle('active');
+                saveData();
+            });
+        });
+
+        // INIT
+        loadCategories();
+        const todayStr = new Date().toISOString().split('T')[0];
+        if (todayStr >= "2026-01-01" && todayStr <= "2027-12-31") datePicker.value = todayStr;
+        updateDateDisplay(datePicker.value);
+    </script>
+</body>
+</html>
